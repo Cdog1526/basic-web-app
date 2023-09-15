@@ -11,5 +11,6 @@ export default function QueryProcessor(query: string): string {
     return (
       "calebkoo"
     );
+  }
   return "";
 }
