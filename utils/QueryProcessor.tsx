@@ -12,5 +12,10 @@ export default function QueryProcessor(query: string): string {
       "calebkoo"
     );
   }
+  if (query.toLowerCase().includes("name")) {
+    return (
+      "CKoo"
+    );
+  }
   return "";
 }
