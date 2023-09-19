@@ -46,16 +46,21 @@ export default function QueryProcessor(query: string): string {
 
   }
   
-  //if (query.toLowerCase().includes("square and a cube")) {
-   // const largeMatch = query.match(/Which of the following numbers is both a square and a cube: 2744, 3233, 833, 2601, 382, 64, 4004?/);
-   // if (largeMatch) {
-//      const x: number = parseInt(largeMatch[1]);
-//      const y: number = parseInt(largeMatch[2]);
-//      const z: number = parseInt(largeMatch[3]);
-//      const z2: number = Math.max(x, y, z);
-//      return (z2).toString();
-//    }
+  if (query.toLowerCase().includes("square and a cube")) {
+    const largeMatch = query.match(/Which of the following numbers is both a square and a cube: (\d+), (\d+), (\d+), (\d+), (\d+), (\d+), (\d+)?/);
+    if (largeMatch) {
+      const x1: number = parseInt(largeMatch[1]);
+      const x2: number = parseInt(largeMatch[2]);
+      const x3: number = parseInt(largeMatch[3]);
+      const x4: number = parseInt(largeMatch[4]);
+      const x5: number = parseInt(largeMatch[5]);
+      const x6: number = parseInt(largeMatch[6]);
+      const x7: number = parseInt(largeMatch[7]);
+      const arr = [x1, x2, x3, x4, x5, x6, x7];
+      const res = arr.filter((n) => Math.sqrt(n) % 1 === 0 &&  Math.cbrt(n) % 1 === 0);
+      return (res).toString();
+    }
 
-//  } */
+  } 
   return "";
 }
