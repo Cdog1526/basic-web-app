@@ -1,3 +1,14 @@
+function isPrime(num : number) : boolean {
+  var prime : boolean = num != 1;
+  for(var i : number =2; i<num; i++) {
+      if(num % i == 0) {
+          prime = false;
+          break;
+      }
+  }
+  return prime;
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -40,6 +51,20 @@ export default function QueryProcessor(query: string): string {
       const y: number = parseInt(addMatch[2]);
       return (x-y).toString();
     }
+  }
+  if (query.toLowerCase().includes("primes")) {
+    const largeMatch = query.match(/Which of the following numbers are primes: (\d+), (\d+), (\d+), (\d+), (\d+)?/);
+    if (largeMatch) {
+      const x1: number = parseInt(largeMatch[1]);
+      const x2: number = parseInt(largeMatch[2]);
+      const x3: number = parseInt(largeMatch[3]);
+      const x4: number = parseInt(largeMatch[4]);
+      const x5: number = parseInt(largeMatch[5]);
+      const arr = [x1, x2, x3, x4, x5];
+      const res = arr.filter((n) => isPrime(n));
+      return (res).toString();
+    }
+
   }
   
   if (query.toLowerCase().includes("largest")) {
